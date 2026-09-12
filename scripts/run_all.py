@@ -15,6 +15,7 @@ def run(script: str) -> None:
 
 def main() -> None:
     run("monte_carlo_spectroscopy.py")
+    run("global_scaling_stress.py")
     run("network_augmentation.py")
 
 
