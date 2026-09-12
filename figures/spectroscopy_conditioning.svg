@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="440" viewBox="0 0 720 440">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="82" y="28" width="614" height="344" fill="none" stroke="black"/>
+<line x1="82" y1="372.00" x2="696" y2="372.00" stroke="#dddddd" stroke-width="1"/>
+<text x="72" y="376.00" font-size="13" text-anchor="end">0.00</text>
+<line x1="82" y1="276.44" x2="696" y2="276.44" stroke="#dddddd" stroke-width="1"/>
+<text x="72" y="280.44" font-size="13" text-anchor="end">0.05</text>
+<line x1="82" y1="180.89" x2="696" y2="180.89" stroke="#dddddd" stroke-width="1"/>
+<text x="72" y="184.89" font-size="13" text-anchor="end">0.10</text>
+<line x1="82" y1="85.33" x2="696" y2="85.33" stroke="#dddddd" stroke-width="1"/>
+<text x="72" y="89.33" font-size="13" text-anchor="end">0.15</text>
+<line x1="82.00" y1="372" x2="82.00" y2="378" stroke="black"/>
+<text x="82.00" y="396" font-size="13" text-anchor="middle">3</text>
+<line x1="204.80" y1="372" x2="204.80" y2="378" stroke="black"/>
+<text x="204.80" y="396" font-size="13" text-anchor="middle">4</text>
+<line x1="327.60" y1="372" x2="327.60" y2="378" stroke="black"/>
+<text x="327.60" y="396" font-size="13" text-anchor="middle">5</text>
+<line x1="450.40" y1="372" x2="450.40" y2="378" stroke="black"/>
+<text x="450.40" y="396" font-size="13" text-anchor="middle">6</text>
+<line x1="573.20" y1="372" x2="573.20" y2="378" stroke="black"/>
+<text x="573.20" y="396" font-size="13" text-anchor="middle">7</text>
+<line x1="696.00" y1="372" x2="696.00" y2="378" stroke="black"/>
+<text x="696.00" y="396" font-size="13" text-anchor="middle">8</text>
+<polygon points="82.00,372.00 204.80,265.83 327.60,192.90 450.40,140.58 573.20,96.21 696.00,56.93 696.00,316.14 573.20,333.14 450.40,349.54 327.60,363.27 204.80,370.76 82.00,372.00" fill="#bdbdbd" fill-opacity="0.55" stroke="none"/>
+<line x1="573.20" y1="28" x2="573.20" y2="372" stroke="#555555" stroke-width="2" stroke-dasharray="7,5"/>
+<polyline points="82.00,372.00 204.80,352.61 327.60,316.64 450.40,279.48 573.20,246.20 696.00,215.78" fill="none" stroke="black" stroke-width="2.4"/>
+<circle cx="82.00" cy="372.00" r="4" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="204.80" cy="352.61" r="4" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="327.60" cy="316.64" r="4" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="450.40" cy="279.48" r="4" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="573.20" cy="246.20" r="4" fill="white" stroke="black" stroke-width="2"/>
+<circle cx="696.00" cy="215.78" r="4" fill="white" stroke="black" stroke-width="2"/>
+<text x="389.00" y="422" font-size="15" text-anchor="middle">Number of scalar measurements M</text>
+<text x="20" y="200.00" font-size="15" text-anchor="middle" transform="rotate(-90 20 200.00)">Smallest singular value of projected Jacobian</text>
+<text x="581.20" y="46" font-size="12">global sufficient bound M=7</text>
+<line x1="100" y1="48" x2="132" y2="48" stroke="black" stroke-width="2.4"/>
+<circle cx="116" cy="48" r="4" fill="white" stroke="black" stroke-width="2"/>
+<text x="140" y="52" font-size="12">median</text>
+<rect x="100" y="61" width="32" height="12" fill="#bdbdbd" fill-opacity="0.55"/>
+<text x="140" y="72" font-size="12">10th–90th percentile</text>
+</svg>
