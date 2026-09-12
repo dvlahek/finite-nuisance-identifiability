@@ -54,11 +54,11 @@
     ]
   ],
   "R_plus_v": 1.0,
-  "residual_margin_on_unit_K_basis": 0.7071067811865475,
+  "residual_margin_on_unit_K_basis": 0.707106781187,
   "augmented_projected_singular_values": [
-    1.4619022000815438,
-    0.7778619134302062,
-    0.5077133059428725
+    1.461902200082,
+    0.77786191343,
+    0.507713305943
   ],
-  "augmented_min_singular_value": 0.5077133059428725
+  "augmented_min_singular_value": 0.507713305943
 }
