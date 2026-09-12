@@ -1,0 +1,13 @@
+{
+  "seed": 20260912,
+  "n_cases": 1000,
+  "mismatches": 0,
+  "ambiguity_dimension_histogram": {
+    "0": 555,
+    "1": 177,
+    "2": 113,
+    "3": 86,
+    "4": 50,
+    "5": 19
+  }
+}
