@@ -8,17 +8,22 @@ The paper studies exact physical identifiability when finite scalar measurements
 M \ge 2d+p+1.
 \]
 
-The repository reproduces the numerical illustrations used to separate this global analytic statement from local differential rank and to verify the finite-network augmentation example.
+A direct application of a generic finite-measurement theorem to the augmented physical+nuisance state would instead give `2d+2p+1`. The shared-nuisance formulation therefore saves exactly `p` measurements in the universal sufficient count.
+
+The repository reproduces the numerical illustrations used to separate this global analytic statement from local differential rank, stress-test the count across several `(d,p)` regimes, and verify the finite-network augmentation example.
 
 ## Repository contents
 
 - `scripts/monte_carlo_spectroscopy.py` — 5000-trial Monte Carlo experiment for the analytic spectroscopy example.
+- `scripts/global_scaling_stress.py` — dimension-scaling stress test for `(d,p)=(1,1),(2,1),(2,2),(3,2)`.
 - `scripts/network_augmentation.py` — exact finite-network ambiguity and one-sensor augmentation example.
 - `scripts/run_all.py` — reproduces every committed numerical result.
 - `results/spectroscopy_conditioning.csv` — conditioning statistics reported in the manuscript.
+- `results/global_scaling_stress.csv` — local conditioning and finite-cloud quotient-separation statistics.
 - `results/network_augmentation.json` — ranks, residual response, and augmented singular values.
-- `figures/spectroscopy_conditioning.svg` — visualization of local projected conditioning versus the global sufficient measurement count.
-- `.github/workflows/reproduce.yml` — CI workflow that reruns the calculations on every push and pull request.
+- `figures/spectroscopy_conditioning.svg` — local projected conditioning for the spectroscopy example.
+- `figures/global_scaling_stress.svg` — measurement-count sweep for the scaling stress test.
+- `.github/workflows/reproduce.yml` — CI workflow that reruns the calculations on every push and pull request and verifies the committed outputs.
 
 ## Reproduce
 
@@ -34,9 +39,9 @@ pip install -r requirements.txt
 python scripts/run_all.py
 ```
 
-The Monte Carlo calculation is deterministic with seed `20260912`.
+All stochastic experiments use deterministic seeds derived from `20260912`.
 
-## Expected spectroscopy results
+## Analytic spectroscopy example
 
 The physical model is
 
@@ -56,6 +61,25 @@ with unknown affine nuisance baseline `alpha_0 + alpha_1 z`. The physical dimens
 | 8 | 1.000 | 0.08174 | 0.02923 | 0.16486 |
 
 This does **not** claim global injectivity below `M=7`. It illustrates that local differential rank and global uniform almost-sure identifiability are different statements.
+
+## Dimension-scaling stress test
+
+The stress test uses the nonlinear analytic family
+
+\[
+f_\theta(z)=\sum_{j=1}^{d}\exp((1.5j+\theta_j)z),
+\]
+
+with `theta_j in [0.1,0.5]` and polynomial nuisance space `span{1,z,...,z^(p-1)}`. For each `(d,p)` pair, 180 physical states and 200 random measurement designs per `M` are used. The finite-cloud diagnostic only compares parameter pairs separated by at least `delta=0.12` and is normalized by `sqrt(M)`.
+
+| d | p | Local `d+p` | Shared `2d+p+1` | Naive `2d+2p+1` | Saved | Median cloud margin at shared | At naive |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 1 | 2 | 4 | 5 | 1 | 0.04726 | 0.05462 |
+| 2 | 1 | 3 | 6 | 7 | 1 | 0.00683 | 0.00736 |
+| 2 | 2 | 4 | 7 | 9 | 2 | 0.00184 | 0.00271 |
+| 3 | 2 | 5 | 9 | 11 | 2 | 0.00122 | 0.00131 |
+
+At `M=d+p`, every tested design was locally full rank. At the shared global sufficient count, the median finite-cloud quotient margin retained approximately 68%--93% of the margin obtained at the larger naive augmented count. This is a numerical stress test, not a proof that the universal bound is sharp.
 
 ## Finite-network augmentation
 
