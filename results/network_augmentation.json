@@ -1,0 +1,64 @@
+{
+  "Q": [
+    [
+      1.0,
+      0.0,
+      2.0
+    ],
+    [
+      0.0,
+      1.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "H": [
+    [
+      1.0
+    ],
+    [
+      1.0
+    ],
+    [
+      1.0
+    ]
+  ],
+  "ambiguity_direction_v": [
+    -1.0,
+    0.0,
+    1.0
+  ],
+  "projected_old_rank": 2,
+  "ambiguity_dimension_k": 1,
+  "Q_plus": [
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "H_plus": [
+    [
+      0.0
+    ]
+  ],
+  "R_plus": [
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "R_plus_v": 1.0,
+  "residual_margin_on_unit_K_basis": 0.7071067811865475,
+  "augmented_projected_singular_values": [
+    1.4619022000815438,
+    0.7778619134302062,
+    0.5077133059428725
+  ],
+  "augmented_min_singular_value": 0.5077133059428725
+}
