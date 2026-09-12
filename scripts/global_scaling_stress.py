@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Dimension-scaling stress test for shared-nuisance finite measurements.
 
-The experiment is diagnostic rather than a proof of sharpness. For several
-(d,p) pairs it samples analytic exponential-mixture models, projects out a
-p-dimensional polynomial nuisance space, and records local projected-Jacobian
-conditioning together with a finite-cloud proxy for global separation.
+The experiment is deliberately diagnostic rather than a proof of sharpness.
+For several (d,p) pairs it samples analytic exponential-mixture models,
+projects out a p-dimensional polynomial nuisance space, and records
+(i) local projected-Jacobian conditioning and (ii) a finite-cloud proxy for
+global separation among physically distinct parameter states.
 """
 from __future__ import annotations
 
@@ -26,7 +27,7 @@ TOL = 1.0e-10
 
 
 def nuisance_complement(z: np.ndarray, p: int) -> np.ndarray:
-    """Orthonormal basis for the complement of span{1,z,...,z^(p-1)}."""
+    """Return an orthonormal basis for the complement of span{1,z,...,z^(p-1)}."""
     h = np.column_stack([z ** k for k in range(p)])
     u, _, _ = np.linalg.svd(h, full_matrices=True)
     return u[:, p:]
@@ -71,6 +72,7 @@ def run() -> list[dict[str, float]]:
 
         for m in range(local_count, naive_count + 1):
             design_rng = np.random.default_rng(SEED + 10000 * d + 100 * p + m)
+            local_rng = np.random.default_rng(SEED + 20000 * d + 200 * p + m)
             margins = np.empty(N_DESIGNS, dtype=float)
             sigmas = np.empty(N_DESIGNS, dtype=float)
 
@@ -80,7 +82,7 @@ def run() -> list[dict[str, float]]:
                 embedding = model_values(theta_cloud, z) @ u_perp
                 margins[trial] = finite_cloud_margin(embedding, pair_mask, m)
 
-                theta0 = design_rng.uniform(THETA_LOW, THETA_HIGH, size=d)
+                theta0 = local_rng.uniform(THETA_LOW, THETA_HIGH, size=d)
                 j_eff = u_perp.T @ physical_jacobian(theta0, z)
                 singular_values = np.linalg.svd(j_eff, compute_uv=False)
                 sigmas[trial] = singular_values[-1] if singular_values.size >= d else 0.0
