@@ -8,6 +8,13 @@ from pathlib import Path
 
 import numpy as np
 
+OUTPUT_DECIMALS = 12
+
+
+def stable_float(value: float) -> float:
+    """Round output-only values to suppress platform-level last-bit SVD drift."""
+    return round(float(value), OUTPUT_DECIMALS)
+
 
 def projector_orthogonal_to(h: np.ndarray) -> np.ndarray:
     return np.eye(h.shape[0]) - h @ np.linalg.pinv(h)
@@ -49,10 +56,10 @@ def compute() -> dict[str, object]:
         "Q_plus": q_plus.tolist(),
         "H_plus": h_plus.tolist(),
         "R_plus": r_plus.tolist(),
-        "R_plus_v": float((r_plus @ v)[0]),
-        "residual_margin_on_unit_K_basis": residual_margin_on_k,
-        "augmented_projected_singular_values": [float(x) for x in augmented_singular_values],
-        "augmented_min_singular_value": float(augmented_singular_values[-1]),
+        "R_plus_v": stable_float((r_plus @ v)[0]),
+        "residual_margin_on_unit_K_basis": stable_float(residual_margin_on_k),
+        "augmented_projected_singular_values": [stable_float(x) for x in augmented_singular_values],
+        "augmented_min_singular_value": stable_float(augmented_singular_values[-1]),
     }
 
 
