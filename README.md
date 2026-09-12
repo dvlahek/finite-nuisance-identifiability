@@ -1,35 +1,31 @@
 # Finite Nuisance Identifiability
 
-Reproducibility repository for the manuscript **"Finite Random Measurements for Analytic Inverse Problems with Shared Nuisance Structure"**.
+Reproducibility repository for **Finite Random Measurements for Analytic Inverse Problems with Shared Nuisance Structure**.
 
-The paper studies exact physical identifiability when finite scalar measurements contain a shared finite-dimensional nuisance contribution. Its main global result uses the dimension of the **relative nuisance family** rather than duplicating the nuisance dimension for two candidate states. For self-identification of a `d`-dimensional analytic model with a common `p`-dimensional additive nuisance space, the resulting universal almost-sure sufficient count is
+The paper studies physical identifiability when finite scalar measurements contain a shared finite-dimensional nuisance contribution. For a `d`-dimensional analytic model with a common `p`-dimensional additive nuisance space, the main self-identification result gives
 
 \[
 M \ge 2d+p+1.
 \]
 
-A direct application of a generic finite-measurement theorem to the augmented physical+nuisance state would instead give `2d+2p+1`. The shared-nuisance formulation therefore saves exactly `p` measurements in the universal sufficient count. The bound is sufficient and is not claimed to be model-specific minimal; an exact `d=p=1` counterexample in the manuscript and repository requires only two measurements although the universal count is four.
-
-The repository reproduces the numerical illustrations used to separate this global analytic statement from local differential rank, stress-test the count across several `(d,p)` regimes, verify the finite-network augmentation example, and regression-test the explicit nonminimality example.
+Direct augmentation of the physical and nuisance variables would give `2d+2p+1`. The reduction comes from the collision geometry: two candidate states depend on one relative nuisance vector, not two independent nuisance vectors.
 
 ## Repository contents
 
-- `scripts/monte_carlo_spectroscopy.py` — 5000-trial Monte Carlo experiment for the analytic spectroscopy example.
-- `scripts/global_scaling_stress.py` — dimension-scaling stress test for `(d,p)=(1,1),(2,1),(2,2),(3,2)`.
-- `scripts/network_augmentation.py` — exact finite-network ambiguity and one-sensor augmentation example.
-- `scripts/nonminimality_example.py` — exact two-measurement counterexample showing that the universal count need not be minimal.
-- `scripts/run_all.py` — reproduces every committed numerical result and exact regression check.
-- `results/spectroscopy_conditioning.csv` — conditioning statistics reported in the manuscript.
-- `results/global_scaling_stress.csv` — local conditioning and finite-cloud quotient-separation statistics.
-- `results/network_augmentation.json` — ranks, residual response, and augmented singular values.
-- `results/nonminimality_example.json` — deterministic output of the exact nonminimality example.
-- `figures/spectroscopy_conditioning.svg` — local projected conditioning for the spectroscopy example.
-- `figures/global_scaling_stress.svg` — measurement-count sweep for the scaling stress test.
-- `.github/workflows/reproduce.yml` — CI workflow that reruns the calculations on every push and pull request and verifies the committed outputs.
+- `scripts/monte_carlo_spectroscopy.py` - 5000-trial spectroscopy conditioning experiment.
+- `scripts/global_scaling_stress.py` - dimension-scaling experiment for `(d,p)=(1,1),(2,1),(2,2),(3,2)`.
+- `scripts/multiseed_robustness.py` - ten-seed robustness audit of the shared/naive quotient-margin comparison.
+- `scripts/network_augmentation.py` - exact finite-network ambiguity and one-sensor augmentation example.
+- `scripts/network_theorem_regression.py` - 1000 randomized checks of the augmentation theorem against the direct augmented projected-rank condition.
+- `scripts/nonminimality_example.py` - exact `d=p=1` example with model-specific minimum `M=2`.
+- `scripts/run_all.py` - runs all numerical experiments and regression checks.
+- `results/` - committed reference outputs.
+- `figures/` - deterministic SVG figure sources.
+- `.github/workflows/reproduce.yml` - CI workflow that regenerates the outputs and fails on modified or untracked files in `results/` or `figures/`.
 
 ## Reproduce
 
-Python 3.12 is used in CI.
+CI uses Python 3.12.
 
 ```bash
 python -m venv .venv
@@ -41,17 +37,17 @@ pip install -r requirements.txt
 python scripts/run_all.py
 ```
 
-All stochastic experiments use deterministic seeds derived from `20260912`.
+The main seed is `20260912`. The scaling experiment uses separate random streams for measurement designs and local-Jacobian evaluation, so changes to one diagnostic do not change the other.
 
-## Analytic spectroscopy example
+## Spectroscopy example
 
-The physical model is
+The model is
 
 \[
 f((a,b),z)=e^{az}+b e^{3z},
 \]
 
-with unknown affine nuisance baseline `alpha_0 + alpha_1 z`. The physical dimension is `d=2` and the nuisance dimension is `p=2`, so the theorem gives the global sufficient count `M=7`. Local nuisance-projected Jacobian rank is generically possible already at `M=4`.
+with an unknown affine baseline. Here `d=2` and `p=2`, so the global sufficient count is `M=7`. Local projected Jacobian rank is already possible at `M=4`.
 
 | M | Full-rank fraction | Median sigma_min | 10th pct. | 90th pct. |
 |---:|---:|---:|---:|---:|
@@ -62,28 +58,47 @@ with unknown affine nuisance baseline `alpha_0 + alpha_1 z`. The physical dimens
 | 7 | 1.000 | 0.06582 | 0.02033 | 0.14431 |
 | 8 | 1.000 | 0.08174 | 0.02923 | 0.16486 |
 
-This does **not** claim global injectivity below `M=7`. It illustrates that local differential rank and global uniform almost-sure identifiability are different statements.
+## Dimension-scaling experiment
 
-## Dimension-scaling stress test
-
-The stress test uses the nonlinear analytic family
+The nonlinear family is
 
 \[
 f_\theta(z)=\sum_{j=1}^{d}\exp((1.5j+\theta_j)z),
 \]
 
-with `theta_j in [0.1,0.5]` and polynomial nuisance space `span{1,z,...,z^(p-1)}`. For each `(d,p)` pair, 180 physical states and 200 random measurement designs per `M` are used. The finite-cloud diagnostic only compares parameter pairs separated by at least `delta=0.12` and is normalized by `sqrt(M)`.
+with polynomial nuisance space `span{1,z,...,z^(p-1)}`. Each regime uses 180 physical states and 200 random measurement designs per `M`.
 
-| d | p | Local `d+p` | Shared `2d+p+1` | Naive `2d+2p+1` | Saved | Median cloud margin at shared | At naive |
+| d | p | Local `d+p` | Shared `2d+p+1` | Naive `2d+2p+1` | Saved | Margin at shared | Margin at naive |
 |---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 1 | 2 | 4 | 5 | 1 | 0.04726 | 0.05462 |
-| 2 | 1 | 3 | 6 | 7 | 1 | 0.00683 | 0.00736 |
-| 2 | 2 | 4 | 7 | 9 | 2 | 0.00184 | 0.00271 |
-| 3 | 2 | 5 | 9 | 11 | 2 | 0.00122 | 0.00131 |
+| 1 | 1 | 2 | 4 | 5 | 1 | 0.04470 | 0.05147 |
+| 2 | 1 | 3 | 6 | 7 | 1 | 0.00694 | 0.00762 |
+| 2 | 2 | 4 | 7 | 9 | 2 | 0.00195 | 0.00248 |
+| 3 | 2 | 5 | 9 | 11 | 2 | 0.00105 | 0.00148 |
 
-At `M=d+p`, every tested design was locally full rank. At the shared global sufficient count, the median finite-cloud quotient margin retained approximately 68%--93% of the margin obtained at the larger naive augmented count. This is a numerical stress test, not a proof that the universal bound is sharp.
+Across ten independent seed blocks, the median shared-to-naive margin ratios are approximately `0.902`, `0.908`, `0.773`, and `0.812` for the four regimes. The full block-level values are stored in `results/multiseed_robustness.csv`.
 
-## Exact nonminimality example
+## Finite-network augmentation
+
+For
+
+\[
+Q=\begin{bmatrix}1&0&2\\0&1&1\\0&0&1\end{bmatrix},\qquad
+H=\begin{bmatrix}1\\1\\1\end{bmatrix},
+\]
+
+the nuisance-projected physical matrix has rank 2 and leaves the ambiguity direction
+
+\[
+v=(-1,0,1)^T.
+\]
+
+One added scalar measurement resolves the ambiguity, and the augmented projected singular values are approximately
+
+`1.4619022, 0.7778619, 0.5077133`.
+
+The randomized regression test generates 1000 finite networks and compares the theorem condition `rank(R_+ B_K)=k` with direct full-rank testing after augmentation. The committed run gives `1000/1000` agreement.
+
+## Model-specific lower count
 
 For
 
@@ -91,44 +106,15 @@ For
 y_i=\theta z_i+\alpha,
 \]
 
-with `d=p=1`, the universal theorem gives `M>=4`. Two distinct sample points already give
+with `d=p=1`, two distinct sample points recover both `theta` and `alpha`, while one measurement leaves a one-parameter ambiguity. Thus this model has exact almost-sure minimum `M=2`, below the uniform bound `M=4`.
 
-\[
-\theta=\frac{y_1-y_2}{z_1-z_2},\qquad \alpha=y_1-\theta z_1,
-\]
+## Figure generation
 
-so the exact almost-sure minimum for this model is `M=2`. One measurement is insufficient because any alternative `theta'` can be compensated by an adjusted constant nuisance. `scripts/nonminimality_example.py` verifies both statements and writes the deterministic reference output used by CI.
+The repository generates deterministic SVG figure sources. The manuscript PDF figures are vector conversions of these SVG files; the numerical content is fully determined by the committed SVG and CSV outputs.
 
-## Finite-network augmentation
+## Reproducibility
 
-For the manuscript example,
-
-\[
-Q=\begin{bmatrix}1&0&2\\0&1&1\\0&0&1\end{bmatrix},\qquad
-H=\begin{bmatrix}1\\1\\1\end{bmatrix}.
-\]
-
-The nuisance-projected physical matrix has rank 2, leaving the one-dimensional ambiguity direction
-
-\[
-v=(-1,0,1)^T,
-\]
-
-because `Qv` lies in `range(H)`. The added measurement
-
-\[
-Q_+=\begin{bmatrix}0&0&1\end{bmatrix},\qquad H_+=0
-\]
-
-has nonzero residual response on this ambiguity. The augmented nuisance-projected physical matrix has singular values approximately
-
-`1.4619022, 0.7778619, 0.5077133`,
-
-so one added scalar measurement is both necessary and sufficient in this example.
-
-## Reproducibility note
-
-No external data sets are used. All numerical values are generated from analytic models specified in the manuscript and in the scripts in this repository.
+No external data sets are used. GitHub Actions reruns all experiments and regression checks on every push and pull request and verifies that `results/` and `figures/` remain unchanged.
 
 ## Author
 
