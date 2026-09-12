@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run every numerical experiment used by the manuscript."""
+"""Run every numerical experiment and regression check used by the manuscript."""
 from __future__ import annotations
 
 import subprocess
@@ -16,7 +16,9 @@ def run(script: str) -> None:
 def main() -> None:
     run("monte_carlo_spectroscopy.py")
     run("global_scaling_stress.py")
+    run("multiseed_robustness.py")
     run("network_augmentation.py")
+    run("network_theorem_regression.py")
     run("nonminimality_example.py")
 
 
