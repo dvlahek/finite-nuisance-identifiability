@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="black">
+<line x1="82" y1="402.00" x2="732" y2="402.00" stroke="#dddddd" stroke-width="1"/>
+<text x="70" y="406.00" text-anchor="end">10^-5</text>
+<line x1="82" y1="308.50" x2="732" y2="308.50" stroke="#dddddd" stroke-width="1"/>
+<text x="70" y="312.50" text-anchor="end">10^-4</text>
+<line x1="82" y1="215.00" x2="732" y2="215.00" stroke="#dddddd" stroke-width="1"/>
+<text x="70" y="219.00" text-anchor="end">10^-3</text>
+<line x1="82" y1="121.50" x2="732" y2="121.50" stroke="#dddddd" stroke-width="1"/>
+<text x="70" y="125.50" text-anchor="end">10^-2</text>
+<line x1="82" y1="28.00" x2="732" y2="28.00" stroke="#dddddd" stroke-width="1"/>
+<text x="70" y="32.00" text-anchor="end">10^-1</text>
+<line x1="82.00" y1="28" x2="82.00" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="82.00" y="426" text-anchor="middle">2</text>
+<line x1="154.22" y1="28" x2="154.22" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="154.22" y="426" text-anchor="middle">3</text>
+<line x1="226.44" y1="28" x2="226.44" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="226.44" y="426" text-anchor="middle">4</text>
+<line x1="298.67" y1="28" x2="298.67" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="298.67" y="426" text-anchor="middle">5</text>
+<line x1="370.89" y1="28" x2="370.89" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="370.89" y="426" text-anchor="middle">6</text>
+<line x1="443.11" y1="28" x2="443.11" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="443.11" y="426" text-anchor="middle">7</text>
+<line x1="515.33" y1="28" x2="515.33" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="515.33" y="426" text-anchor="middle">8</text>
+<line x1="587.56" y1="28" x2="587.56" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="587.56" y="426" text-anchor="middle">9</text>
+<line x1="659.78" y1="28" x2="659.78" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="659.78" y="426" text-anchor="middle">10</text>
+<line x1="732.00" y1="28" x2="732.00" y2="402" stroke="#f1f1f1" stroke-width="1"/>
+<text x="732.00" y="426" text-anchor="middle">11</text>
+<line x1="82" y1="402" x2="732" y2="402" stroke="black" stroke-width="1.2"/>
+<line x1="82" y1="28" x2="82" y2="402" stroke="black" stroke-width="1.2"/>
+<text x="407.00" y="452" text-anchor="middle">Number of scalar measurements M</text>
+<text transform="translate(22 215.00) rotate(-90)" text-anchor="middle">Median finite-cloud quotient margin</text>
+<polyline points="82.00,86.41 154.22,62.75 226.44,58.44 298.67,52.55" fill="none" stroke="#1f77b4" stroke-width="2.2"/>
+<circle cx="82.00" cy="86.41" r="3.0" fill="#1f77b4"/>
+<circle cx="154.22" cy="62.75" r="3.0" fill="#1f77b4"/>
+<circle cx="226.44" cy="58.44" r="3.0" fill="#1f77b4"/>
+<circle cx="226.44" cy="58.44" r="7.0" fill="none" stroke="#1f77b4" stroke-width="2"/>
+<circle cx="298.67" cy="52.55" r="3.0" fill="#1f77b4"/>
+<rect x="292.67" y="46.55" width="12" height="12" fill="none" stroke="#1f77b4" stroke-width="2"/>
+<polyline points="154.22,182.58 226.44,162.23 298.67,139.61 370.89,136.99 443.11,133.97" fill="none" stroke="#d62728" stroke-width="2.2" stroke-dasharray="7,4"/>
+<circle cx="154.22" cy="182.58" r="3.0" fill="#d62728"/>
+<circle cx="226.44" cy="162.23" r="3.0" fill="#d62728"/>
+<circle cx="298.67" cy="139.61" r="3.0" fill="#d62728"/>
+<circle cx="370.89" cy="136.99" r="3.0" fill="#d62728"/>
+<circle cx="370.89" cy="136.99" r="7.0" fill="none" stroke="#d62728" stroke-width="2"/>
+<circle cx="443.11" cy="133.97" r="3.0" fill="#d62728"/>
+<rect x="437.11" y="127.97" width="12" height="12" fill="none" stroke="#d62728" stroke-width="2"/>
+<polyline points="226.44,239.79 298.67,203.83 370.89,197.75 443.11,190.25 515.33,179.93 587.56,174.49" fill="none" stroke="#2ca02c" stroke-width="2.2" stroke-dasharray="3,3"/>
+<circle cx="226.44" cy="239.79" r="3.0" fill="#2ca02c"/>
+<circle cx="298.67" cy="203.83" r="3.0" fill="#2ca02c"/>
+<circle cx="370.89" cy="197.75" r="3.0" fill="#2ca02c"/>
+<circle cx="443.11" cy="190.25" r="3.0" fill="#2ca02c"/>
+<circle cx="443.11" cy="190.25" r="7.0" fill="none" stroke="#2ca02c" stroke-width="2"/>
+<circle cx="515.33" cy="179.93" r="3.0" fill="#2ca02c"/>
+<circle cx="587.56" cy="174.49" r="3.0" fill="#2ca02c"/>
+<rect x="581.56" y="168.49" width="12" height="12" fill="none" stroke="#2ca02c" stroke-width="2"/>
+<polyline points="298.67,265.62 370.89,236.73 443.11,224.88 515.33,218.97 587.56,206.94 659.78,208.87 732.00,204.18" fill="none" stroke="#9467bd" stroke-width="2.2" stroke-dasharray="10,3,2,3"/>
+<circle cx="298.67" cy="265.62" r="3.0" fill="#9467bd"/>
+<circle cx="370.89" cy="236.73" r="3.0" fill="#9467bd"/>
+<circle cx="443.11" cy="224.88" r="3.0" fill="#9467bd"/>
+<circle cx="515.33" cy="218.97" r="3.0" fill="#9467bd"/>
+<circle cx="587.56" cy="206.94" r="3.0" fill="#9467bd"/>
+<circle cx="587.56" cy="206.94" r="7.0" fill="none" stroke="#9467bd" stroke-width="2"/>
+<circle cx="659.78" cy="208.87" r="3.0" fill="#9467bd"/>
+<circle cx="732.00" cy="204.18" r="3.0" fill="#9467bd"/>
+<rect x="726.00" y="198.18" width="12" height="12" fill="none" stroke="#9467bd" stroke-width="2"/>
+<rect x="488" y="22" width="238" height="128" fill="white" stroke="#bbbbbb"/>
+<line x1="500" y1="42" x2="536" y2="42" stroke="#1f77b4" stroke-width="2.2"/>
+<text x="545" y="46">(d,p)=(1,1)</text>
+<line x1="500" y1="64" x2="536" y2="64" stroke="#d62728" stroke-width="2.2" stroke-dasharray="7,4"/>
+<text x="545" y="68">(d,p)=(2,1)</text>
+<line x1="500" y1="86" x2="536" y2="86" stroke="#2ca02c" stroke-width="2.2" stroke-dasharray="3,3"/>
+<text x="545" y="90">(d,p)=(2,2)</text>
+<line x1="500" y1="108" x2="536" y2="108" stroke="#9467bd" stroke-width="2.2" stroke-dasharray="10,3,2,3"/>
+<text x="545" y="112">(d,p)=(3,2)</text>
+<circle cx="508" cy="135" r="6" fill="none" stroke="black" stroke-width="1.7"/><text x="523" y="139">shared bound</text>
+<rect x="502" y="150" width="12" height="12" fill="none" stroke="black" stroke-width="1.7"/><text x="523" y="161">naive augmented count</text>
+</g></svg>
