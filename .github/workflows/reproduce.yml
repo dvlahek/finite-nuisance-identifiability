@@ -18,5 +18,5 @@ jobs:
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
       - name: Reproduce all manuscript numerics
         run: python scripts/run_all.py
-      - name: Verify committed numerical outputs
-        run: git diff --exit-code -- results/
+      - name: Verify committed outputs
+        run: git diff --exit-code -- results/ figures/
