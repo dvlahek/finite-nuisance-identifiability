@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated manuscript."
+title: "Finite Nuisance Identifiability: Reproducibility Code"
+type: software
+authors:
+  - family-names: Vlahek
+    given-names: Dino
+    orcid: "https://orcid.org/0000-0002-3911-8685"
+repository-code: "https://github.com/dvlahek/finite-nuisance-identifiability"
+date-released: 2026-09-12
