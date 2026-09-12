@@ -1,0 +1,16 @@
+{
+  "physical_dimension_d": 1,
+  "nuisance_dimension_p": 1,
+  "universal_sufficient_bound": 4,
+  "exact_minimum_for_this_model": 2,
+  "sampling_points": [
+    -0.7,
+    0.9
+  ],
+  "true_theta": 1.75,
+  "true_alpha": -0.4,
+  "recovered_theta": 1.75,
+  "recovered_alpha": -0.4,
+  "one_sample_alternative_theta": -0.25,
+  "one_sample_compensating_alpha": -1.8
+}
