@@ -18,7 +18,45 @@ jobs:
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
       - name: Reproduce all manuscript numerics and regression checks
         run: python scripts/run_all.py
-      - name: Verify committed outputs
+      - name: Verify platform-sensitive CSV outputs
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv
+          import io
+          import subprocess
+          import numpy as np
+
+          paths = [
+              "results/global_scaling_stress.csv",
+              "results/multiseed_robustness.csv",
+          ]
+          for path in paths:
+              expected_text = subprocess.check_output(["git", "show", f"HEAD:{path}"], text=True)
+              with open(path, encoding="utf-8", newline="") as handle:
+                  actual = list(csv.DictReader(handle))
+              expected = list(csv.DictReader(io.StringIO(expected_text)))
+              if len(actual) != len(expected):
+                  raise SystemExit(f"row-count mismatch in {path}")
+              if actual and actual[0].keys() != expected[0].keys():
+                  raise SystemExit(f"column mismatch in {path}")
+              for i, (a, e) in enumerate(zip(actual, expected)):
+                  for key in a:
+                      try:
+                          av = float(a[key])
+                          ev = float(e[key])
+                      except ValueError:
+                          if a[key] != e[key]:
+                              raise SystemExit(f"text mismatch in {path}, row {i}, column {key}")
+                      else:
+                          if not np.isclose(av, ev, rtol=0.0, atol=5e-9):
+                              raise SystemExit(
+                                  f"numeric mismatch in {path}, row {i}, column {key}: {av} vs {ev}"
+                              )
+              print(f"{path}: PASS")
+          PY
+          git checkout -- results/global_scaling_stress.csv results/multiseed_robustness.csv
+      - name: Verify exact committed outputs
         shell: bash
         run: |
           status="$(git status --porcelain --untracked-files=all -- results/ figures/)"
