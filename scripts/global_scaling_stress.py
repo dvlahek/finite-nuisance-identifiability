@@ -112,7 +112,7 @@ def write_csv(rows: list[dict[str, float]], path: Path) -> None:
         "median_cloud_margin", "p10_cloud_margin", "p90_cloud_margin",
     ]
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             out = dict(row)
