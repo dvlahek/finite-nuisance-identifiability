@@ -1,0 +1,22 @@
+name: reproduce-numerics
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+      - name: Reproduce all manuscript numerics
+        run: python scripts/run_all.py
+      - name: Verify committed numerical outputs
+        run: git diff --exit-code -- results/
